@@ -46,7 +46,7 @@ class _QuoteOfTheDayScreenState extends State<QuoteOfTheDayScreen> {
     setState(() {
       _currentQuote = _quoteManager.getRandomQuote();
     });
-    _prefs.setString('quoteOfTheDay', QuotesDB.toJson(_currentQuote));
+    _prefs.setString('Random Quote Generator', QuotesDB.toJson(_currentQuote));
     String currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
     _prefs.setString('lastDate', currentDate);
     _loadFavorites(); // Reload favorites after updating the quote
@@ -84,7 +84,7 @@ class _QuoteOfTheDayScreenState extends State<QuoteOfTheDayScreen> {
   }
 
   void _shareQuote() {
-    final String quoteText = "$_currentQuote['quote'] - $_currentQuote['author'] $_currentQuote['description']";
+    final String quoteText = "${_currentQuote['quote']} - ${_currentQuote['author']} ${_currentQuote['description']}";
 
     Share.share(quoteText);
   }
@@ -93,7 +93,7 @@ class _QuoteOfTheDayScreenState extends State<QuoteOfTheDayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quote of the Day'),
+        title: Text('Random Quote'),
         backgroundColor: Colors.white,
         actions: [
           IconButton(
@@ -101,7 +101,7 @@ class _QuoteOfTheDayScreenState extends State<QuoteOfTheDayScreen> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => favorites.FavoriteQuotesScreen(favorites: [],),
+                  builder: (context) => favorites.FavoriteQuotesScreen(favorites: []),
                 ),
               );
             },
@@ -192,6 +192,14 @@ class _QuoteOfTheDayScreenState extends State<QuoteOfTheDayScreen> {
                   onPressed: _shareQuote,
                   backgroundColor: Colors.white,
                   child: Icon(Icons.share, color: Colors.blue),
+                ),
+                SizedBox(width: 20.0),
+                ElevatedButton(
+                  onPressed: _updateQuote,
+                  child: Text('New Quote', style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white, backgroundColor: Colors.blueGrey[700], // Text color
+                  ),
                 ),
               ],
             ),
