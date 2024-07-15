@@ -16,3 +16,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 # codsoft_-2_everydayquoteapp
 # RandomQuoteGenerator_CodeAlpha
+![Screenshot 2024-07-15 195047](https://github.com/user-attachments/assets/20d13b98-ecb0-466f-a8cf-a3cb8d916b0f)
